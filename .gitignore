@@ -259,6 +259,10 @@ test_output/
 
 # Operator Manual (Internal Documentation)
 OPERATOR_MANUAL.md
+PYPI_PUBLISHING_GUIDE.md
+LOCAL_TEST_RESULTS.md
+# Cleanup documentation (Internal Documentation)
+CLEANUP_SUMMARY.md
 
 # Temporary files
 *.tmp
