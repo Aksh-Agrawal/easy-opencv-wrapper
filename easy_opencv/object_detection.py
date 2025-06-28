@@ -33,7 +33,11 @@ def detect_faces(image: np.ndarray, scale_factor: float = 1.1,
         minSize=min_size
     )
     
-    return faces.tolist()
+    # Convert to list, handling different return types
+    if isinstance(faces, np.ndarray) and len(faces) > 0:
+        return faces.tolist()
+    else:
+        return []
 
 def detect_eyes(image: np.ndarray, scale_factor: float = 1.1,
                min_neighbors: int = 5, min_size: Tuple[int, int] = (20, 20)) -> List[Tuple[int, int, int, int]]:
@@ -61,7 +65,11 @@ def detect_eyes(image: np.ndarray, scale_factor: float = 1.1,
         minSize=min_size
     )
     
-    return eyes.tolist()
+    # Convert to list, handling different return types
+    if isinstance(eyes, np.ndarray) and len(eyes) > 0:
+        return eyes.tolist()
+    else:
+        return []
 
 def detect_objects_cascade(image: np.ndarray, cascade_path: str,
                           scale_factor: float = 1.1, min_neighbors: int = 5,
@@ -91,7 +99,11 @@ def detect_objects_cascade(image: np.ndarray, cascade_path: str,
         minSize=min_size
     )
     
-    return objects.tolist()
+    # Convert to list, handling different return types
+    if isinstance(objects, np.ndarray) and len(objects) > 0:
+        return objects.tolist()
+    else:
+        return []
 
 def background_subtraction(video_path: str, method: str = 'mog2',
                           learning_rate: float = 0.01) -> cv2.BackgroundSubtractor:

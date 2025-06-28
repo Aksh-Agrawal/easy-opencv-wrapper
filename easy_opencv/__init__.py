@@ -1,5 +1,13 @@
 """
 Easy OpenCV - A simplified wrapper for OpenCV functions
+
+A powerful yet user-friendly OpenCV wrapper that makes computer vision 
+accessible for everyone. Provides streamlined interface to perform 
+complex computer vision operations with simple, intuitive function calls.
+
+Author: Aksh Agrawal
+License: MIT
+Homepage: https://github.com/aksh-github/easy-opencv-wrapper
 """
 
 # Import all modules
@@ -14,7 +22,21 @@ from . import transformations
 from . import utils
 
 __version__ = "1.0.0"
-__author__ = "Your Name"
+__author__ = "Aksh Agrawal"
+__email__ = "akshagrawal0801@gmail.com"
+__license__ = "MIT"
+__description__ = "A simplified and intuitive OpenCV wrapper that reduces code complexity by 50-70%"
+
+# Package metadata
+__all__ = [
+    'cv',
+    'EasyCV',
+    '__version__',
+    '__author__',
+    '__email__',
+    '__license__',
+    '__description__',
+]
 
 # Main class for easy access to all functions
 class EasyCV:

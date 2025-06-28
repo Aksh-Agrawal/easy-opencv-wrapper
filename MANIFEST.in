@@ -1,0 +1,33 @@
+include README.md
+include LICENSE
+include MANIFEST.in
+include pyproject.toml
+include requirements.txt
+
+recursive-include easy_opencv *.py
+recursive-include examples *.py
+recursive-include tests *.py
+
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .git*
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude *.egg-info
+
+# Include documentation files
+include *.md
+include DOCUMENTATION.md
+include USAGE_GUIDE.md
+include PROJECT_STRUCTURE.md
+include EASY_OPENCV_BENEFITS.md
+include WHY_EASY_OPENCV.md
+include DIFFERENCES.md
+
+# Exclude operator manual and test outputs
+exclude OPERATOR_MANUAL.md
+exclude TEST_ANALYSIS_REPORT.md
+exclude DEBUGGED_SUMMARY.md
+recursive-exclude tests/test_output *
+recursive-exclude __pycache__ *
+recursive-exclude *.egg-info *

@@ -3,11 +3,39 @@
 ![Easy OpenCV](https://img.shields.io/badge/Easy-OpenCV-green)
 ![Python 3.7+](https://img.shields.io/badge/Python-3.7%2B-blue)
 ![OpenCV 4.5+](https://img.shields.io/badge/OpenCV-4.5%2B-blue)
-![License](https://img.shields.io/badge/License-MIT-blue)
+[![PyPI version](https://img.shields.io/pypi/v/easy-opencv-wrapper.svg)](https://pypi.org/project/easy-opencv-wrapper/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A powerful yet user-friendly OpenCV wrapper that makes computer vision accessible for everyone. Easy OpenCV provides a streamlined interface to perform complex computer vision operations with simple, intuitive function calls.
 
 > **"Computer vision simplified with human-readable function calls and sensible defaults"**
+
+## 🚀 Quick Installation
+
+```bash
+pip install easy-opencv-wrapper
+```
+
+**Requirements**: Python 3.7+ • OpenCV 4.5+ • NumPy 1.19+ • Pillow 8.0+
+
+## 🎯 Quick Start
+
+```python
+from easy_opencv import cv
+
+# Load and enhance image (handles errors automatically)
+image = cv.load_image('photo.jpg')
+enhanced = cv.apply_noise_reduction(image)
+enhanced = cv.adjust_brightness_contrast(enhanced, brightness=10, contrast=1.2)
+
+# Detect faces and draw boxes
+faces = cv.detect_faces(enhanced)
+for (x, y, w, h) in faces:
+    enhanced = cv.draw_rectangle(enhanced, (x, y), (x+w, y+h), color=(0, 255, 0))
+
+# Save result
+cv.save_image(enhanced, 'enhanced_photo.jpg')
+```
 
 ## Why Choose Easy OpenCV?
 
