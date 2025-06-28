@@ -1,3 +1,7 @@
+# Easy OpenCV .gitignore
+# This file specifies which files and directories should be ignored by Git
+# to keep the repository clean and focused on essential code and documentation
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
