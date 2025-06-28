@@ -263,6 +263,37 @@ PYPI_PUBLISHING_GUIDE.md
 LOCAL_TEST_RESULTS.md
 CHANGELOG.md
 CLEANUP_SUMMARY.md
+No_Module_Error.md
+
+# Test and verification scripts (Development only)
+test_functionality.py
+test_local.py
+test_simple.py
+verify_import.py
+verify_installation.py
+verify_ready.py
+
+# Build and distribution files
+dist/
+build/
+*.egg-info/
+easy_opencv_wrapper.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Package management
+.twine/
+.pypirc
 
 # Temporary files
 *.tmp
