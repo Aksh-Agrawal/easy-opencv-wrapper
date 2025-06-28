@@ -257,11 +257,11 @@ test_output/
 *.mov
 *.mkv
 
-# Operator Manual (Internal Documentation)
+# Internal Documentation (Development files not for distribution)
 OPERATOR_MANUAL.md
 PYPI_PUBLISHING_GUIDE.md
 LOCAL_TEST_RESULTS.md
-# Cleanup documentation (Internal Documentation)
+CHANGELOG.md
 CLEANUP_SUMMARY.md
 
 # Temporary files
