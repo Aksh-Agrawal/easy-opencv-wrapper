@@ -5,17 +5,17 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="easy-opencv-wrapper",
-    version="1.0.0",
+    version="1.0.1",
     author="Aksh Agrawal",
-    author_email="akshagrawal0801@gmail.com",
+    author_email="akshagr10@gmail.com",
     description="A simplified and intuitive OpenCV wrapper that reduces code complexity by 50-70% for common computer vision tasks",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/aksh-github/easy-opencv-wrapper",
+    url="https://github.com/aksh-agrawal/easy-opencv-wrapper",
     project_urls={
-        "Bug Tracker": "https://github.com/aksh-github/easy-opencv-wrapper/issues",
-        "Documentation": "https://github.com/aksh-github/easy-opencv-wrapper#readme",
-        "Repository": "https://github.com/aksh-github/easy-opencv-wrapper.git",
+        "Bug Tracker": "https://github.com/aksh-agrawal/easy-opencv-wrapper/issues",
+        "Documentation": "https://github.com/aksh-agrawal/easy-opencv-wrapper#readme",
+        "Repository": "https://github.com/aksh-agrawal/easy-opencv-wrapper.git",
     },
     packages=find_packages(),
     classifiers=[
