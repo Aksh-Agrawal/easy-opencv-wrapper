@@ -21,9 +21,9 @@ from . import filters
 from . import transformations
 from . import utils
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Aksh Agrawal"
-__email__ = "akshagrawal0801@gmail.com"
+__email__ = "akshagr10@gmail.com"
 __license__ = "MIT"
 __description__ = "A simplified and intuitive OpenCV wrapper that reduces code complexity by 50-70%"
 

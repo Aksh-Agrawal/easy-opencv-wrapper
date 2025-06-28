@@ -10,13 +10,43 @@ A powerful yet user-friendly OpenCV wrapper that makes computer vision accessibl
 
 > **"Computer vision simplified with human-readable function calls and sensible defaults"**
 
-## 🚀 Quick Installation
+## 🚀 Installation
+
+### Step 1: Install the Package
 
 ```bash
 pip install easy-opencv-wrapper
 ```
 
+### Step 2: Import and Use
+
+```python
+from easy_opencv import cv  # Note: underscores, not hyphens!
+```
+
 **Requirements**: Python 3.7+ • OpenCV 4.5+ • NumPy 1.19+ • Pillow 8.0+
+
+> **📋 Critical**: The PyPI package name is `easy-opencv-wrapper` (with hyphens), but you import it as `easy_opencv` (with underscores). This is standard Python convention. See [INSTALLATION_GUIDE.md](INSTALLATION_GUIDE.md) for troubleshooting.
+
+### ⚠️ Common Import Mistake
+
+```python
+# ❌ WRONG - This will cause ModuleNotFoundError
+import easy_opencv_wrapper
+
+# ✅ CORRECT - This is how you import Easy OpenCV
+from easy_opencv import cv
+```
+
+### 🔍 Verify Your Installation
+
+Run our verification script to test your installation:
+
+```bash
+python verify_import.py
+```
+
+This script will test both correct and incorrect imports and verify basic functionality.
 
 ## 🎯 Quick Start
 
