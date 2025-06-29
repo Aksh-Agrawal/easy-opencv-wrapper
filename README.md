@@ -6,6 +6,9 @@
 [![PyPI version](https://img.shields.io/pypi/v/easy-opencv-wrapper.svg)](https://pypi.org/project/easy-opencv-wrapper/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PyPI Downloads](https://static.pepy.tech/badge/easy-opencv-wrapper)](https://pepy.tech/projects/easy-opencv-wrapper)
+
+<br>
+
 A powerful yet user-friendly OpenCV wrapper that makes computer vision accessible for everyone. Easy OpenCV provides a streamlined interface to perform complex computer vision operations with simple, intuitive function calls.
 
 > **"Computer vision simplified with human-readable function calls and sensible defaults"**
