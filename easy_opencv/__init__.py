@@ -21,6 +21,25 @@ from . import filters
 from . import transformations
 from . import utils
 
+# Import new object detection classes for direct access
+from .object_detection import (
+    ImageSource, FaceDetector, EyeDetector, CascadeDetector, 
+    MotionDetector, CircleDetector, LineDetector, ColorDetector, 
+    DNNObjectDetector
+)
+
+# Import new image operations classes for direct access
+from .image_operations import (
+    ImageLoader, ImageSaver, ImageDisplayer, ImageResizer,
+    ImageCropper, ColorSpaceConverter, ImageAnalyzer
+)
+
+# Import new video operations classes for direct access
+from .video_operations import (
+    VideoLoader, VideoSaver, VideoPlayer, FrameExtractor,
+    VideoAnalyzer, WebcamCapture
+)
+
 __version__ = "1.0.1"
 __author__ = "Aksh Agrawal"
 __email__ = "akshagr10@gmail.com"
@@ -31,6 +50,32 @@ __description__ = "A simplified and intuitive OpenCV wrapper that reduces code c
 __all__ = [
     'cv',
     'EasyCV',
+    # Object Detection Classes
+    'ImageSource',
+    'FaceDetector', 
+    'EyeDetector',
+    'CascadeDetector',
+    'MotionDetector',
+    'CircleDetector', 
+    'LineDetector',
+    'ColorDetector',
+    'DNNObjectDetector',
+    # Image Operation Classes
+    'ImageLoader',
+    'ImageSaver',
+    'ImageDisplayer',
+    'ImageResizer',
+    'ImageCropper',
+    'ColorSpaceConverter',
+    'ImageAnalyzer',
+    # Video Operation Classes
+    'VideoLoader',
+    'VideoSaver',
+    'VideoPlayer',
+    'FrameExtractor',
+    'VideoAnalyzer',
+    'WebcamCapture',
+    # Package metadata
     '__version__',
     '__author__',
     '__email__',
@@ -57,7 +102,7 @@ class EasyCV:
         self.convert_color_space = image_operations.convert_color_space
         self.get_image_info = image_operations.get_image_info
         
-        # Video Operations
+        # Video Operations (Legacy functions)
         self.load_video = video_operations.load_video
         self.save_video = video_operations.save_video
         self.extract_frames = video_operations.extract_frames
@@ -65,6 +110,14 @@ class EasyCV:
         self.get_video_info = video_operations.get_video_info
         self.play_video = video_operations.play_video
         self.webcam_capture = video_operations.webcam_capture
+        
+        # Video Operation Classes (New)
+        self.VideoLoader = video_operations.VideoLoader
+        self.VideoSaver = video_operations.VideoSaver
+        self.VideoPlayer = video_operations.VideoPlayer
+        self.FrameExtractor = video_operations.FrameExtractor
+        self.VideoAnalyzer = video_operations.VideoAnalyzer
+        self.WebcamCapture = video_operations.WebcamCapture
         
         # Image Processing
         self.apply_blur = image_processing.apply_blur
@@ -84,7 +137,7 @@ class EasyCV:
         self.find_shapes = feature_detection.find_shapes
         self.template_matching = feature_detection.template_matching
         
-        # Object Detection
+        # Object Detection (Legacy functions)
         self.detect_faces = object_detection.detect_faces
         self.detect_eyes = object_detection.detect_eyes
         self.detect_objects_cascade = object_detection.detect_objects_cascade
@@ -93,7 +146,19 @@ class EasyCV:
         self.detect_circles = object_detection.detect_circles
         self.detect_lines = object_detection.detect_lines
         self.color_detection = object_detection.color_detection
+        self.detect_objects_dnn = object_detection.detect_objects_dnn
         
+        # Object Detection Classes (New)
+        self.ImageSource = object_detection.ImageSource
+        self.FaceDetector = object_detection.FaceDetector
+        self.EyeDetector = object_detection.EyeDetector
+        self.CascadeDetector = object_detection.CascadeDetector
+        self.MotionDetector = object_detection.MotionDetector
+        self.CircleDetector = object_detection.CircleDetector
+        self.LineDetector = object_detection.LineDetector
+        self.ColorDetector = object_detection.ColorDetector
+        self.DNNObjectDetector = object_detection.DNNObjectDetector
+
         # Drawing Operations
         self.draw_rectangle = drawing_operations.draw_rectangle
         self.draw_circle = drawing_operations.draw_circle
@@ -142,6 +207,7 @@ class EasyCV:
         self.apply_watermark = utils.apply_watermark
         self.convert_to_sketch = utils.convert_to_sketch
         self.auto_canny = utils.auto_canny
+        self.download_file = utils.download_file
 
 # Create a global instance for easy access
 cv = EasyCV()

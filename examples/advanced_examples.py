@@ -285,6 +285,30 @@ def geometric_shape_detection():
     
     return result
 
+def dnn_object_detection_demo():
+    """Demonstrate object detection using a pre-trained DNN model."""
+    print("=== DNN Object Detection Demo ===")
+
+    # Create a sample image for detection
+    image = np.zeros((400, 600, 3), dtype=np.uint8)
+    # Draw a green circle (could be a 'bottle')
+    image = cv.draw_circle(image, (150, 200), 50, (0, 255, 0), filled=True)
+    # Draw a red rectangle (could be a 'tvmonitor')
+    image = cv.draw_rectangle(image, (350, 150), (500, 300), (0, 0, 255), filled=True)
+
+    # Detect objects using the DNN model
+    detected_objects = cv.detect_objects_dnn(image, confidence_threshold=0.2)
+
+    result = image.copy()
+    # Draw bounding boxes and labels
+    for (label, confidence, (startX, startY, endX, endY)) in detected_objects:
+        result = cv.draw_rectangle(result, (startX, startY), (endX, endY), (255, 255, 0), thickness=2)
+        text = f"{label}: {confidence:.2f}"
+        result = cv.draw_text(result, text, (startX, startY - 10), font_scale=0.6, color=(255, 255, 0))
+
+    cv.show_image(result, "DNN Object Detection Demo")
+    return result
+
 def advanced_demo():
     """Run all advanced demos"""
     print("Welcome to Easy OpenCV Advanced Demo!")
@@ -297,7 +321,8 @@ def advanced_demo():
         image_enhancement_pipeline()
         color_space_analysis()
         geometric_shape_detection()
-        
+        dnn_object_detection_demo()
+
         print("\n=== Advanced Demo Completed! ===")
         print("These examples show how Easy OpenCV can handle complex tasks with simple calls.")
         

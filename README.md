@@ -113,11 +113,39 @@ edges = cv.apply_edge_detection(blurred)
 - **Video Processing**: Handle video files, extract frames, and create videos from image sequences
 - **Image Processing**: Apply filters, enhance images, and perform various image transformations
 - **Feature Detection**: Detect corners, keypoints, contours, and match features between images
-- **Object Detection**: Face detection, eye detection, and custom object detection using Haar cascades
+- **Object Detection**: 🆕 **Class-based system with automatic webcam fallback** - Face, eye, motion, and DNN object detection
 - **Drawing Operations**: Draw shapes, text, and annotations on images
 - **Filters**: Apply various filters including blur, sharpen, vintage, cartoon effects
 - **Transformations**: Rotate, flip, warp, and apply perspective transformations
 - **Utilities**: Helper functions for FPS counting, color picking, and image comparison
+
+### 🎥 NEW: Object Detection with Webcam Support
+
+Easy OpenCV now features a powerful class-based object detection system with **automatic webcam fallback**:
+
+```python
+from easy_opencv import FaceDetector, EyeDetector, ColorDetector
+
+# 🎯 Face detection with automatic webcam fallback
+detector = FaceDetector()
+results = detector.detect_from_source()  # Uses webcam if no source provided
+
+# 🎨 Detect red objects from webcam
+color_detector = ColorDetector(target_color='red')
+results = color_detector.detect_from_source()
+
+# 📹 Motion detection with live preview
+motion_detector = MotionDetector()
+results = motion_detector.detect_from_source(show_live=True)
+```
+
+**Key Features:**
+
+- 🎥 **Automatic webcam fallback** when no image/video path provided
+- 📁 Support for images, videos, and live webcam streams
+- 🎛️ Reusable detector objects with custom parameters
+- 👀 Built-in live visualization with bounding boxes
+- 🔄 Full backward compatibility with legacy functions
 
 ## 🚀 Installation
 
@@ -253,6 +281,41 @@ cv.show_image(grid, "Image Processing Effects")
 
 ### 🎬 Video Operations
 
+🆕 **NEW Class-Based API with Webcam Support:**
+
+```python
+# Import the new video operation classes
+from easy_opencv import VideoLoader, VideoPlayer, WebcamCapture, VideoAnalyzer
+
+# Load video files or webcam streams
+loader = VideoLoader()
+video = loader.load("video.mp4")  # or loader.load(0) for webcam
+
+# Play videos with advanced controls
+player = VideoPlayer(default_speed=1.0, default_loop=True)
+player.play("video.mp4")  # Interactive playback with controls
+
+# Analyze video content
+analyzer = VideoAnalyzer()
+info = analyzer.get_info("video.mp4")
+motion_data = analyzer.analyze_motion("video.mp4")
+
+# Capture from webcam with recording
+webcam = WebcamCapture()
+webcam.capture(camera_id=0, save_path="recording.mp4")
+```
+
+**Available Video Classes:**
+
+- `VideoLoader` - Loading videos from files or webcam sources
+- `VideoSaver` - Saving videos with customizable parameters
+- `VideoPlayer` - Playing videos with advanced playback controls
+- `FrameExtractor` - Extracting frames from videos
+- `VideoAnalyzer` - Analyzing video properties and motion
+- `WebcamCapture` - Capturing from webcams with interactive controls
+
+**Legacy Functions (Still Supported):**
+
 | Function                                                        | Description                        | Key Features                             |
 | --------------------------------------------------------------- | ---------------------------------- | ---------------------------------------- |
 | `load_video(path)`                                              | Load video files                   | Metadata extraction, error handling      |
@@ -290,16 +353,45 @@ cv.show_image(grid, "Image Processing Effects")
 
 ### 🎯 Object Detection
 
-| Function                                     | Description           | Key Features                          |
-| -------------------------------------------- | --------------------- | ------------------------------------- |
-| `detect_faces(image, scale_factor=1.1)`      | Face detection        | Multiple models, confidence control   |
-| `detect_eyes(image, scale_factor=1.1)`       | Eye detection         | Works within face regions             |
-| `detect_motion(video_path, sensitivity=500)` | Motion detection      | ROI selection, threshold control      |
-| `color_detection(image, target_color='red')` | Color-based detection | HSV/RGB support, tolerance setting    |
-| `detect_qr_codes(image)`                     | QR/Barcode detection  | Multiple formats, decoding            |
-| `detect_text(image)`                         | Text detection        | OCR integration, language options     |
-| `detect_objects_yolo(image)`                 | YOLO object detection | Multiple models, confidence threshold |
-| `skin_detection(image)`                      | Skin tone detection   | Multiple color models                 |
+🆕 **NEW Class-Based API with Webcam Support:**
+
+```python
+# Import the new detection classes
+from easy_opencv import FaceDetector, EyeDetector, ColorDetector, MotionDetector
+
+# Face detection with automatic webcam fallback
+face_detector = FaceDetector(scale_factor=1.1, min_neighbors=5)
+results = face_detector.detect_from_source()  # Uses webcam automatically
+
+# Color detection from webcam
+color_detector = ColorDetector(target_color='red', tolerance=20)
+results = color_detector.detect_from_source(show_live=True)
+
+# Motion detection with video output
+motion_detector = MotionDetector(sensitivity=500)
+results = motion_detector.detect_from_source(output_path="motion.mp4")
+```
+
+**Available Detector Classes:**
+
+- `FaceDetector` - Face detection using Haar cascades
+- `EyeDetector` - Eye detection using Haar cascades
+- `CascadeDetector` - Generic cascade detector for custom XML files
+- `MotionDetector` - Motion detection with background subtraction
+- `CircleDetector` - Circle detection using Hough Transform
+- `LineDetector` - Line detection using Hough Transform
+- `ColorDetector` - Color-based object detection in HSV space
+- `DNNObjectDetector` - Deep learning object detection (SSD MobileNet V2)
+
+**Legacy Functions (Still Supported):**
+
+| Function                                     | Description           | Key Features                             |
+| -------------------------------------------- | --------------------- | ---------------------------------------- |
+| `detect_faces(image, scale_factor=1.1)`      | Face detection        | Multiple models, confidence control      |
+| `detect_eyes(image, scale_factor=1.1)`       | Eye detection         | Works within face regions                |
+| `detect_motion(video_path, sensitivity=500)` | Motion detection      | ROI selection, threshold control         |
+| `color_detection(image, target_color='red')` | Color-based detection | HSV/RGB support, tolerance setting       |
+| `detect_objects_dnn(image)`                  | DNN object detection  | Pre-trained models, confidence threshold |
 
 ### 🎨 Drawing Operations
 

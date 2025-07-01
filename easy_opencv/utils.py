@@ -7,6 +7,29 @@ import cv2
 import numpy as np
 from typing import Optional, Callable, Tuple, Any
 import time
+import urllib.request
+import os
+
+def download_file(url: str, file_path: str, description: Optional[str] = None) -> None:
+    """
+    Download a file from a URL if it doesn't exist.
+
+    Args:
+        url (str): URL to download from.
+        file_path (str): Path to save the file.
+        description (str): Description for progress display.
+    """
+    if not os.path.exists(file_path):
+        print(f"Downloading {description or file_path}...")
+        try:
+            urllib.request.urlretrieve(url, file_path)
+            print("Download complete.")
+        except Exception as e:
+            print(f"Error downloading {url}: {e}")
+            # Clean up incomplete file
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            raise
 
 def create_trackbar(window_name: str, trackbar_name: str, initial_value: int = 0,
                    max_value: int = 255, callback: Optional[Callable] = None) -> None:
