@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "easy-opencv-wrapper"
-version = "1.0.1"
+version = "1.0.3"
 description = "A simplified and intuitive OpenCV wrapper that reduces code complexity by 50-70% for common computer vision tasks"
 readme = "README.md"
 license = "MIT"

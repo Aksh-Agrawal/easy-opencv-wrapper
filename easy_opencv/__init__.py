@@ -40,7 +40,7 @@ from .video_operations import (
     VideoAnalyzer, WebcamCapture
 )
 
-__version__ = "1.0.1"
+__version__ = "1.0.3"
 __author__ = "Aksh Agrawal"
 __email__ = "akshagr10@gmail.com"
 __license__ = "MIT"

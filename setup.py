@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="easy-opencv-wrapper",
-    version="1.0.1",
+    version="1.0.2",
     author="Aksh Agrawal",
     author_email="akshagr10@gmail.com",
     description="A simplified and intuitive OpenCV wrapper that reduces code complexity by 50-70% for common computer vision tasks",
