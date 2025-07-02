@@ -34,8 +34,9 @@ from easy_opencv import cv  # Note: underscores, not hyphens!
 ### ⚠️ Common Import Mistake
 
 ```python
-# ❌ WRONG - This will cause ModuleNotFoundError
+# ❌ WRONG - These will cause ModuleNotFoundError
 import easy_opencv_wrapper
+import easy-opencv
 
 # ✅ CORRECT - This is how you import Easy OpenCV
 from easy_opencv import cv
@@ -97,7 +98,7 @@ blurred = cv.apply_gaussian_blur(img, kernel_size=15)
 edges = cv.apply_edge_detection(blurred)
 ```
 
-📝 **See [DIFFERENCES.md](DIFFERENCES.md) for 22+ side-by-side code comparisons** and [EASY_OPENCV_BENEFITS.md](EASY_OPENCV_BENEFITS.md) for detailed benefits analysis.
+📝 **See [DIFFERENCE.md](DIFFERENCE.md) for 22+ side-by-side code comparisons** and [EASY_OPENCV_BENEFITS.md](EASY_OPENCV_BENEFITS.md) for detailed benefits analysis.
 
 ## ✨ Key Features
 
@@ -137,6 +138,12 @@ results = color_detector.detect_from_source()
 # 📹 Motion detection with live preview
 motion_detector = MotionDetector()
 results = motion_detector.detect_from_source(show_live=True)
+
+# 🎥 Alternative webcam access methods
+video = cv.load_video(0)  # Use camera index 0 (default webcam)
+# Or use the WebcamCapture class for more control
+webcam = cv.WebcamCapture()
+webcam.capture(camera_id=0, save_path="recording.mp4")  # With optional recording
 ```
 
 **Key Features:**
@@ -146,6 +153,34 @@ results = motion_detector.detect_from_source(show_live=True)
 - 🎛️ Reusable detector objects with custom parameters
 - 👀 Built-in live visualization with bounding boxes
 - 🔄 Full backward compatibility with legacy functions
+
+### 🔧 Webcam Usage Tips
+
+For reliable webcam access, there are several approaches:
+
+```python
+# Method 1: Using the load_video function with camera index
+video = cv.load_video(0)  # 0 = default webcam
+while True:
+    ret, frame = video.read()
+    if not ret:
+        break
+    # Process frame
+    cv.show_image(frame, 'Video', wait=False)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+video.release()
+
+# Method 2: Using WebcamCapture class for interactive controls
+webcam = cv.WebcamCapture()
+webcam.capture(camera_id=0)  # Interactive session with keyboard controls
+
+# Method 3: Using object detectors with built-in webcam support
+detector = FaceDetector()
+detector.detect_from_source(source=None)  # None defaults to webcam
+```
+
+> **⚠️ Note:** When using `cv.show_image()` in a video loop, set `wait=False` to prevent blocking.
 
 ## 🚀 Installation
 
@@ -716,6 +751,63 @@ cv.webcam_capture(
     height=480
 )
 ```
+
+## 🔧 Troubleshooting
+
+### Common Errors and Solutions
+
+#### Module Import Issues
+
+**Error:** `ModuleNotFoundError: No module named 'easy_opencv_wrapper'`  
+**Solution:** Use the correct import statement: `from easy_opencv import cv`
+
+**Error:** `ModuleNotFoundError: No module named 'easy-opencv'`  
+**Solution:** The package name uses underscores in imports, not hyphens: `from easy_opencv import cv`
+
+#### Webcam Access Problems
+
+**Error:** `AttributeError: 'EasyCV' object has no attribute 'open_webcam'`  
+**Solution:** Use `cv.load_video(0)` instead for webcam access, or the `WebcamCapture` class.
+
+**Error:** Webcam freezes when using `show_image` in a loop  
+**Solution:** Set `wait=False` in `cv.show_image()` when using it in a video loop.
+
+```python
+# Correct way to use show_image in a video loop
+while True:
+    ret, frame = video.read()
+    if not ret:
+        break
+
+    cv.show_image(frame, 'Video', wait=False)  # Set wait=False to prevent blocking
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+```
+
+#### Video Frame Processing
+
+**Error:** No key detection when processing video frames  
+**Solution:** Use direct OpenCV for keyboard detection:
+
+```python
+import cv2  # Import OpenCV directly for keyboard handling
+
+# In your video loop
+if cv2.waitKey(1) & 0xFF == ord('q'):
+    break  # Exit on 'q' key press
+```
+
+### Getting Help
+
+If you encounter problems not covered in this troubleshooting guide:
+
+1. Check our [Documentation](./Documentation/) folder for more examples
+2. See [DIFFERENCE.md](DIFFERENCE.md) for detailed code comparisons
+3. File an issue on our GitHub repository
+4. Join our community Discord server for live help
+
+Remember that Easy OpenCV is a wrapper around OpenCV, so you can always mix both APIs when needed for specific functionality.
 
 ## 📋 Requirements
 

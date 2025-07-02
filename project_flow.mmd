@@ -1,0 +1,108 @@
+```mermaid
+graph TD
+    subgraph "Package Structure"
+        A["easy_opencv/__init__.py"]
+        A --> B["EasyCV Class"]
+        A --> C["Global 'cv' instance"]
+        
+        subgraph "Core Modules"
+            M1["image_operations.py"]
+            M2["video_operations.py"] 
+            M3["image_processing.py"]
+            M4["object_detection.py"]
+            M5["feature_detection.py"]
+            M6["drawing_operations.py"]
+            M7["filters.py"]
+            M8["transformations.py"]
+            M9["utils.py"]
+        end
+        
+        A --> M1
+        A --> M2
+        A --> M3
+        A --> M4
+        A --> M5
+        A --> M6
+        A --> M7
+        A --> M8
+        A --> M9
+    end
+    
+    subgraph "Object Detection Classes"
+        M4 --> D1["ImageSource"]
+        M4 --> D2["FaceDetector"]
+        M4 --> D3["EyeDetector"]
+        M4 --> D4["CascadeDetector"]
+        M4 --> D5["MotionDetector"]
+        M4 --> D6["CircleDetector"]
+        M4 --> D7["LineDetector"]
+        M4 --> D8["ColorDetector"]
+        M4 --> D9["DNNObjectDetector"]
+        
+        D1 --> D1_1["__enter__()"]
+        D1 --> D1_2["__exit__()"]
+        D1 --> D1_3["get_frame()"]
+        
+        D2 --> D2_1["detect()"]
+        D2 --> D2_2["detect_from_source()"]
+        
+        D3 --> D3_1["detect()"]
+        D3 --> D3_2["detect_from_source()"]
+        
+        D8 --> D8_1["detect()"]
+        D8 --> D8_2["detect_from_source()"]
+    end
+    
+    subgraph "Demo Application Flow"
+        DEMO["demo_object_detection.py"]
+        DEMO --> MAIN["main()"]
+        
+        MAIN --> DEMO1["demo_webcam_fallback()"]
+        MAIN --> DEMO2["demo_different_sources()"]
+        MAIN --> DEMO3["demo_class_vs_legacy()"]
+        
+        DEMO1 --> OPT1["1. Face Detection"]
+        DEMO1 --> OPT2["2. Eye Detection"]
+        DEMO1 --> OPT3["3. Red Color Detection"]
+        DEMO1 --> OPT4["4. Exit"]
+        
+        OPT1 --> FD["FaceDetector()"]
+        OPT2 --> ED["EyeDetector()"]
+        OPT3 --> CD["ColorDetector(target_color='red')"]
+        
+        FD --> DETECT1["detect_from_source(show_live=True)"]
+        ED --> DETECT2["detect_from_source(show_live=True)"]
+        CD --> DETECT3["detect_from_source(show_live=True)"]
+    end
+    
+    subgraph "Data Flow Pipeline"
+        INPUT["User Input / API Call"]
+        INPUT --> SRC["Input Source Resolution"]
+        
+        SRC --> SRC1["Image File"]
+        SRC --> SRC2["Video File"]
+        SRC --> SRC3["Webcam"]
+        
+        SRC1 --> PROC["Processing Pipeline"]
+        SRC2 --> PROC
+        SRC3 --> PROC
+        
+        PROC --> PROC1["Pre-process (if needed)"]
+        PROC1 --> PROC2["Run Detection"]
+        PROC2 --> PROC3["Post-process Results"]
+        
+        PROC3 --> OUT["Output Options"]
+        OUT --> OUT1["Live Display"]
+        OUT --> OUT2["Return Results"]
+        OUT --> OUT3["Save to File"]
+    end
+    
+    D2 -.-> OPT1
+    D3 -.-> OPT2
+    D8 -.-> OPT3
+    
+    DETECT1 -.-> SRC
+    DETECT2 -.-> SRC
+    DETECT3 -.-> SRC
+
+```
